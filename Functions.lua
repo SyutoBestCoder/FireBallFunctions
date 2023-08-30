@@ -54,3 +54,18 @@ function set_hotbar_slot(slot)
     slot = fireball_slot()
 	player.set_held_item_slot(slot -2)
 end
+function get_forward_yaw()
+	local player_yaw, player_pitch = player.angles()
+
+	local potential_yaw_1 = player_yaw + 180
+	local potential_yaw_2 = player_yaw - 180
+
+	local difference_1 = math.abs(player_yaw - potential_yaw_1)
+	local difference_2 = math.abs(player_yaw - potential_yaw_2)
+
+	if difference_1 < difference_2 then
+		return potential_yaw_1
+	else
+		return potential_yaw_2
+	end
+end
